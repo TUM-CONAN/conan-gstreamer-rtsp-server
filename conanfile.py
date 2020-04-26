@@ -16,17 +16,18 @@ class GStreamerRtspServerConan(ConanFile):
         "rtspclientsink": [True, False],
     }
     default_options = ("examples=False", "tests=False", "introspection=True", "rtspclientsink=True")
+    generators = "pkgconf"
 
     def build_requirements(self):
-        self.build_requires("generators/1.0.0@%s/stable" % self.user)
-        self.build_requires("meson/[>=0.51.2]@%s/stable" % self.user)
-        self.build_requires("bison/[>=3.3]@%s/stable" % self.user)
-        self.build_requires("flex/[>=2.6.4]@%s/stable" % self.user)
+        self.build_requires("generators/1.0.0@camposs/stable")
+        self.build_requires("meson/[>=0.51.2]@camposs/stable")
+        # self.build_requires("bison/[>=3.3]@camposs/stable")
+        # self.build_requires("flex/[>=2.6.4]@camposs/stable")
         if self.options.introspection:
-            self.build_requires("gobject-introspection/[>=1.59.3]@%s/stable" % self.user)
+            self.build_requires("gobject-introspection/[>=1.59.3]@camposs/stable")
 
     def requirements(self):
-        self.requires("glib/[>=2.62.0]@%s/stable" % self.user)
+        self.requires("glib/[>=2.62.0]@camposs/stable")
         self.requires("gstreamer/%s@%s/stable" % (self.version, self.user))
         self.requires("gstreamer-plugins-base/%s@%s/stable" % (self.version, self.user))
 
